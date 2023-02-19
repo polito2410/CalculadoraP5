@@ -4,16 +4,17 @@ import java.util.Scanner;
 
 public class CerebroCalculadoraED {
 
-	private Operaciones operacion;
-	private double resultado, numero1, numero2;
-	private String[] historial;
-	private final int TAMANOHISTORIAL = 5;
+	public Operaciones operacion;
+	public static double resultado, numero1, numero2;
+	public String[] historial;
+	public final int TAMANOHISTORIAL = 5;
 	Scanner tecladoCce = new Scanner(System.in);
 
 	CerebroCalculadoraED() {
 		historial = new String[TAMANOHISTORIAL];
 		resultado = 0;
 	}
+
 
 	public void procesarOperacion(String op) {
 		Operaciones operacion;
@@ -54,6 +55,7 @@ public class CerebroCalculadoraED {
 		case "9":
 			operacion = Operaciones.RESULTADO;
 			mostrarResultadoActual(operacion);
+		
 			break;
 		case "10":
 			operacion = Operaciones.RANDOM;
@@ -68,15 +70,15 @@ public class CerebroCalculadoraED {
 		}
 	}
 
-	private void operarSuma(Operaciones op) {
+	public void operarSuma(Operaciones op) {
 		infoOperacion(op);
 		pedirDosNumeros();
 		this.resultado = this.numero1 + this.numero2;
 		mostrarResultado(op);
 		anadirHistorial(op);
 	}
-	
-	private void operarResta(Operaciones op) {
+
+	public void operarResta(Operaciones op) {
 		infoOperacion(op);
 		pedirDosNumeros();
 		this.resultado = this.numero1 - this.numero2;
@@ -84,7 +86,7 @@ public class CerebroCalculadoraED {
 		anadirHistorial(op);
 	}
 	
-	private void operarMultiplica(Operaciones op) {
+	public void operarMultiplica(Operaciones op) {
 		infoOperacion(op);
 		pedirDosNumeros();
 		this.resultado = this.numero1 * this.numero2;
@@ -92,7 +94,7 @@ public class CerebroCalculadoraED {
 		anadirHistorial(op);
 	}
 	
-	private void operarDivide(Operaciones op) {
+	public void operarDivide(Operaciones op) {
 		infoOperacion(op);
 		pedirDosNumeros();
 		this.resultado = this.numero1 / this.numero2;
@@ -100,7 +102,7 @@ public class CerebroCalculadoraED {
 		anadirHistorial(op);
 	}
 	
-	private void operarSumaRes(Operaciones op) {
+	public void operarSumaRes(Operaciones op) {
 		infoOperacion(op);
 		pedirUnNumero();
 		this.resultado = this.resultado + this.numero2;
@@ -108,7 +110,7 @@ public class CerebroCalculadoraED {
 		anadirHistorial(op);
 	}
 	
-	private void operarRestaRes(Operaciones op) {
+	public void operarRestaRes(Operaciones op) {
 		infoOperacion(op);
 		pedirUnNumero();
 		this.resultado = this.resultado + this.numero2;
@@ -116,15 +118,15 @@ public class CerebroCalculadoraED {
 		anadirHistorial(op);
 	}
 	
-	private void operarMultiplicaRes(Operaciones op) {
+	public void operarMultiplicaRes(Operaciones op) {
 		infoOperacion(op);
 		pedirUnNumero();
 		this.resultado = this.resultado * this.numero2;
 		mostrarResultado(op);
 		anadirHistorial(op);
 	}
-	
-	private void operarDivideRes(Operaciones op) {
+
+	public void operarDivideRes(Operaciones op) {
 		infoOperacion(op);
 		pedirUnNumero();
 		this.resultado = this.resultado / this.numero2;
@@ -132,19 +134,19 @@ public class CerebroCalculadoraED {
 		anadirHistorial(op);
 	}
 	
-	private void mostrarResultadoActual(Operaciones op) {
+	public void mostrarResultadoActual(Operaciones op) {
 		infoOperacion(op);
 		System.out.println("El valor actual del resultado es: " + this.resultado + "\n");
 	}
 	
-	private void numeroAleatorio(Operaciones op) {
+	public void numeroAleatorio(Operaciones op) {
 		infoOperacion(op);
 		this.resultado = (double)(Math.random()*100+1);
 		System.out.println("El número aleatorio generado es: " + this.resultado + "\n");
 		anadirHistorialAleatorio(op);
 	}
 	
-	private void operarHistorial(Operaciones op) {
+	public void operarHistorial(Operaciones op) {
 		System.out.println("*** Historial de las cinco últimas operaciones ***");
 		for (String hist : historial) {
 			System.out.println(hist);
@@ -152,25 +154,25 @@ public class CerebroCalculadoraED {
 		System.out.println("\n");
 	}
 	
-	private void infoOperacion(Operaciones op) {
+	public void infoOperacion(Operaciones op) {
 		System.out.println("//////////////////////////////");
 		System.out.println("-> " + op.getNombre() + " - " + op.getInfo());
 	}
 	
-	private void pedirUnNumero() {
+	public void pedirUnNumero() {
 		System.out.println("Introduce el número: ");
 		this.numero1 = this.resultado;
 		this.numero2 = tecladoCce.nextDouble();
 	}
 	
-	private void pedirDosNumeros() {
+	public void pedirDosNumeros() {
 		System.out.println("Introduce el primer número: ");
 		this.numero1 = tecladoCce.nextDouble();
 		System.out.println("Introduce el segundo número: ");
 		this.numero2 = tecladoCce.nextDouble();
 	}
 	
-	private void mostrarResultado(Operaciones op) {
+	public void mostrarResultado(Operaciones op) {
 		System.out.println("El resultado de la operación " + op.getNombre().toLowerCase() + " es:");
 		System.out.println(Double.toString(numero1) 
 				+ " " + op.getSimbolo() + " " 
@@ -178,7 +180,7 @@ public class CerebroCalculadoraED {
 				+ Double.toString(resultado) + "\n");
 	}
 	
-	private void anadirHistorial(Operaciones op) {
+	public void anadirHistorial(Operaciones op) {
 		String nuevaOperacion = op.getNombre() + " -> " 
 				+ Double.toString(numero1) 
 				+ " " + op.getSimbolo() + " " 
